@@ -1,11 +1,26 @@
 <% @suggestions.each do |suggestion| %>
   <% presenter suggestion do |suggestion_presenter| %>
+  <% image_manager = ImageManager.new %>
     <div class="row">
       <div class="col-md-12 box">
           <div class="title">
             <ul class="list-inline">
               <li><h2><%= link_to suggestion.title, suggestion, class: 'stealth' %></h2></li>
               <li><%= suggestion_presenter.suggestion_closed_icon %></li>
+            </ul>
+            <ul class="list-inline">
+              <li>               
+                <% image_url = image_manager.get_image_url(suggestion.image1_id, 800, 600) %>
+                <a href="<%= image_url %>" class="fancybox" rel="group">
+                <img src="<%= image_url %>" width="200px" class="suggestion_img_list"> </img>
+                </a>
+              </li>
+              <li>                
+                <% image_url = image_manager.get_image_url(suggestion.image2_id, 800, 600) %>
+                <a href="<%= image_url %>" class="fancybox" rel="group">
+                <img src="<%= image_url %>" width="200px" class="suggestion_img_list"> </img>
+                </a>                
+              </li>
             </ul>
           </div>
           <p class="pull-right">
